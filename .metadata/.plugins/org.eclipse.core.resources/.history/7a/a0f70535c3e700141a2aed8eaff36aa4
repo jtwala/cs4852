@@ -1,0 +1,33 @@
+
+public class Network {
+	
+	private AdjMatrixGraph tempMatrix;
+
+	/**Run one 'round' of the network algorithm on the given graph,
+	 * modifying in place.
+	 */
+	public void simulateRound(AdjMatrixGraph G) {
+		int numVertices = G.V();
+		tempMatrix = new AdjMatrixGraph(numVertices);
+		for (int v = 0; v < numVertices; v++) {
+			calculateVertexStatus(G, v);
+		}
+		
+	}
+	
+	/**Modify tempMatrix to contain the new status (NONPLAYER, LEAGUE, DOTA, BOTH)
+	 * of the node in question
+	 */
+	private void calculateVertexStatus(AdjMatrixGraph G, int vertex) {
+		
+	}
+	
+    //Test client
+    public static void main(String[] args) {
+        int V = 4;
+        int E = 7;
+        AdjMatrixGraph G = new AdjMatrixGraph(V, E);
+        System.out.println(G);
+    }
+
+}

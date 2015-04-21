@@ -1,0 +1,42 @@
+package networkpkg;
+import java.util.Arrays;
+import com.networkpkg.AdjMatrixGraph.Status;
+
+public class Network {
+	
+	private AdjMatrixGraph.Status[] tempStatuses;
+
+	/**Run one 'round' of the network algorithm on the given graph,
+	 * modifying in place.
+	 */
+	public void simulateRound(AdjMatrixGraph G) {
+		int numVertices = G.V();
+		tempStatuses = new AdjMatrixGraph.Status[numVertices];
+		for (int v = 0; v < numVertices; v++) {
+			calculateVertexStatus(G, v);
+		}
+		
+		for (int v = 0; v < numVertices; v++) {
+			
+		}
+		
+	}
+	
+	/**Modify tempStatuses to contain the new status (NONPLAYER, LEAGUE, DOTA, BOTH)
+	 * of the given vertex based on the status of its neighbors
+	 */
+	private AdjMatrixGraph.Status calculateVertexStatus(AdjMatrixGraph G, int vertex) {
+		AdjMatrixGraph.Status newStatus = G.vertexStatuses[vertex];
+		
+		return newStatus;
+	}
+	
+    //Test client
+    public static void main(String[] args) {
+        int V = 4;
+        int E = 7;
+        AdjMatrixGraph G = new AdjMatrixGraph(V, E);
+        System.out.println(G);
+    }
+
+}
