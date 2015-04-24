@@ -1,10 +1,10 @@
 package networkpkg;
 import java.util.Iterator;
-import java.io.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static networkpkg.AdjMatrixGraph.Status;
-
-/** Visualization code from http://bl.ocks.org/mbostock/4062045 */
 
 public class Network {
 	
@@ -35,10 +35,10 @@ public class Network {
 				try
 				{
 				    // Open an output stream
-				    fout = new FileOutputStream (Constants.OUTPUT_PATH+Constants.OUTPUT_FILENAME);
+				    fout = new FileOutputStream ("myfile.txt");
 
 				    // Print a line of text
-				    new PrintStream(fout).println (nodes+links);
+				    new PrintStream(fout).println ("hello world!");
 
 				    // Close our output stream
 				    fout.close();		
@@ -89,7 +89,9 @@ public class Network {
 	
 	public String printLinks(AdjMatrixGraph G) {
 		
-		String s = "\"links\":[\n";
+		System.out.println("\"links\":[");
+		
+		String s = "";
 		
 		for (int i = 0; i < G.V(); i++) {
 			for (int j = i; j < G.V(); j++) {
@@ -100,9 +102,8 @@ public class Network {
 			
 		}
 		
-		s = s.substring(0, s.length()-2);
-		s += "]}\n\n";
-		return s;
+		System.out.println(s.substring(0, s.length()-2));
+		System.out.println("]}\n\n");
 	}
 	
 	

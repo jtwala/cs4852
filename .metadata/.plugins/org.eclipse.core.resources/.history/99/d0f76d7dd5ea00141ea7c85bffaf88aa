@@ -13,8 +13,8 @@ public final class Constants  {
 	public static final float DOTA_FRIEND_VALUE = 1f;
 	public static final float LEAGUE_FRIEND_VALUE = 1f;
 
-	public static final int NUM_VERTICES = 40;
-	public static final int NUM_EDGES = 41;
+	public static final int NUM_VERTICES = 12;
+	public static final int NUM_EDGES = 20;
 	public static final int NUM_ROUNDS = 8;
 	
 	public static final String OUTPUT_FILENAME = "miserables.json";

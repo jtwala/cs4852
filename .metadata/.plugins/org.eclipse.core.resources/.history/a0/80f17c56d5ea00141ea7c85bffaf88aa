@@ -4,8 +4,6 @@ import java.io.*;
 
 import static networkpkg.AdjMatrixGraph.Status;
 
-/** Visualization code from http://bl.ocks.org/mbostock/4062045 */
-
 public class Network {
 	
 	private Status[] tempStatuses;
@@ -35,10 +33,10 @@ public class Network {
 				try
 				{
 				    // Open an output stream
-				    fout = new FileOutputStream (Constants.OUTPUT_PATH+Constants.OUTPUT_FILENAME);
+				    fout = new FileOutputStream ("Visualization//"+Constants.OUTPUT_FILENAME);
 
 				    // Print a line of text
-				    new PrintStream(fout).println (nodes+links);
+				    new PrintStream(fout).println ("hello world!");
 
 				    // Close our output stream
 				    fout.close();		
