@@ -208,11 +208,11 @@ public class Network {
         	network.simulateRound(G);
         }
         
-//        String vertices = "";
-//        for (Status s : G.vertexStatuses) {
-//        	vertices += " | " + s;
-//        }
-//        System.out.println(vertices + " | ");
+        String vertices = "";
+        for (Status s : G.vertexStatuses) {
+        	vertices += " | " + s;
+        }
+        System.out.println(vertices + " | ");
     }
 
 }
