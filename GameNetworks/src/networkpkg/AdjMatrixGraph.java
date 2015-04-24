@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class AdjMatrixGraph {
     private int V;
     private int E;
-    private boolean[][] adj;
+    public boolean[][] adj;
     public Status[] vertexStatuses;
     
     public enum Status {

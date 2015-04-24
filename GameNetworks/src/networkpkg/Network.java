@@ -13,6 +13,7 @@ public class Network {
 	public void simulateRound(AdjMatrixGraph G) {
 		int numVertices = G.V();
 		tempStatuses = new Status[numVertices];
+		
 		for (int v = 0; v < numVertices; v++) {
 			tempStatuses[v] = calculateVertexStatus(G, v);
 		}
@@ -21,7 +22,65 @@ public class Network {
 			G.vertexStatuses[v] = tempStatuses[v];
 		}
 		
+		printNodes(G);
+		printLinks(G);
+		
 	}
+	
+	
+	public void printNodes(AdjMatrixGraph G) {
+		System.out.println("{\"nodes\":[");
+		
+		String s;
+		
+		int group = 0;
+		
+		for (int i = 0; i < G.V(); i++) {
+			switch(G.vertexStatuses[i]) {
+				case NONPLAYER:
+					group = 0;
+					break;
+				case LEAGUE:
+					group = 1;
+					break;
+				case DOTA:
+					group = 2;
+					break;
+				case BOTH:
+					group = 3;
+					break;
+				default:
+					break;
+			}
+			s = "\t{\"name\":\""+i+"\", \"group\":" + group + "}";
+			if (i < G.V() - 1) {
+				s += ",";
+			}
+			System.out.println(s);
+		}
+		
+		System.out.println("],\n\n");
+	}
+	
+	public void printLinks(AdjMatrixGraph G) {
+		
+		System.out.println("\"links\":[");
+		
+		String s = "";
+		
+		for (int i = 0; i < G.V(); i++) {
+			for (int j = i; j < G.V(); j++) {
+				if (G.adj[i][j]) {
+					s += "\t{\"source\":\""+i+",\"target\":"+j+",\"value\":1},\n";
+				}
+			}
+			
+		}
+		
+		System.out.println(s.substring(0, s.length()-2));
+		System.out.println("]}\n\n");
+	}
+	
 	
 	/**Modify tempStatuses to contain the new status (NONPLAYER, LEAGUE, DOTA, BOTH)
 	 * of the given vertex based on the status of its neighbors
@@ -113,12 +172,16 @@ public class Network {
 				}
 				break;
 			case LEAGUE:
-				if (fracDotA > Constants.LEAGUE_TO_DOTA_THRESHOLD) {
+				if (Constants.LEAGUE_BASE_VALUE + numLeague*Constants.LEAGUE_FRIEND_VALUE <
+						-Constants.DOTA_BASE_VALUE + numDotA*Constants.DOTA_FRIEND_VALUE)
+				{
 					newStatus = Status.DOTA;
 				}
 				break;
 			case DOTA:
-				if (fracLeague > Constants.DOTA_TO_LEAGUE_THRESHOLD) {
+				if (Constants.DOTA_BASE_VALUE + numDotA*Constants.DOTA_FRIEND_VALUE <
+						-Constants.LEAGUE_BASE_VALUE + numLeague*Constants.LEAGUE_FRIEND_VALUE)
+				{
 					newStatus = Status.LEAGUE;
 				}
 				break;
@@ -145,11 +208,11 @@ public class Network {
         	network.simulateRound(G);
         }
         
-        String vertices = "";
-        for (Status s : G.vertexStatuses) {
-        	vertices += " | " + s;
-        }
-        System.out.println(vertices + " | ");
+//        String vertices = "";
+//        for (Status s : G.vertexStatuses) {
+//        	vertices += " | " + s;
+//        }
+//        System.out.println(vertices + " | ");
     }
 
 }
