@@ -226,9 +226,8 @@ public class Network {
 			if (G.vertexStatuses[i] == Status.NONPLAYER) {
 				G.vertexStatuses[i] = (isLeague ? Status.LEAGUE : Status.DOTA);
 				numSeeds--;
-			} else {
-				numTries--;
 			}
+			numTries--;
 		}
 	}
 
@@ -239,12 +238,8 @@ public class Network {
         Network network = new Network();
 
         AdjMatrixGraph G = new AdjMatrixGraph(Constants.NUM_VERTICES, Constants.NUM_EDGES);
-        network.seedGraph(G, true, Constants.NUM_LEAGUE_SEEDS, 10);
         
         for (int i = 0; i < Constants.NUM_ROUNDS; i++) {
-        	if (i == Constants.ROUNDS_BEFORE_SEEDING_DOTA) {
-        		network.seedGraph(G, false, Constants.NUM_DOTA_SEEDS, 10);
-        	}
         	network.simulateRound(G);
         }
         

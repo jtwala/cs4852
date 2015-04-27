@@ -16,9 +16,6 @@ public final class Constants  {
 	public static final int NUM_VERTICES = 40;
 	public static final int NUM_EDGES = 41;
 	public static final int NUM_ROUNDS = 8;
-	public static final int ROUNDS_BEFORE_SEEDING_DOTA = 1;
-	public static final int NUM_LEAGUE_SEEDS = 2;
-	public static final int NUM_DOTA_SEEDS = 1;
 	
 	public static final String OUTPUT_FILENAME = "miserables.json";
 	public static final String OUTPUT_PATH = "Visualization//";

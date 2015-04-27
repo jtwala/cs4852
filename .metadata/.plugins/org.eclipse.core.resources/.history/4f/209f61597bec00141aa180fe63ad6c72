@@ -242,9 +242,6 @@ public class Network {
         network.seedGraph(G, true, Constants.NUM_LEAGUE_SEEDS, 10);
         
         for (int i = 0; i < Constants.NUM_ROUNDS; i++) {
-        	if (i == Constants.ROUNDS_BEFORE_SEEDING_DOTA) {
-        		network.seedGraph(G, false, Constants.NUM_DOTA_SEEDS, 10);
-        	}
         	network.simulateRound(G);
         }
         
