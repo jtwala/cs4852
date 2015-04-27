@@ -13,7 +13,7 @@ public class Network {
 	/**Run one 'round' of the network algorithm on the given graph,
 	 * modifying in place.
 	 */
-	public void simulateRound(AdjMatrixGraph G, int round) {
+	public void simulateRound(AdjMatrixGraph G) {
 		int numVertices = G.V();
 		tempStatuses = new Status[numVertices];
 		
@@ -25,36 +25,31 @@ public class Network {
 			G.vertexStatuses[v] = tempStatuses[v];
 		}
 		
-		String roundStr = Integer.toString(round);
-		writeFile(G, roundStr);
-		
-	}
-	
-	public void writeFile(AdjMatrixGraph G, String fileID) {
 		String nodes = printNodes(G);
 		String links = printLinks(G);
 		
 		
 		// Stream to write file
-		FileOutputStream fout;		
+				FileOutputStream fout;		
 
-		try
-		{
-		    // Open an output stream
-		    fout = new FileOutputStream (Constants.OUTPUT_PATH+fileID+Constants.OUTPUT_FILENAME);
+				try
+				{
+				    // Open an output stream
+				    fout = new FileOutputStream (Constants.OUTPUT_PATH+Constants.OUTPUT_FILENAME);
 
-		    // Print a line of text
-		    new PrintStream(fout).println (nodes+links);
+				    // Print a line of text
+				    new PrintStream(fout).println (nodes+links);
 
-		    // Close our output stream
-		    fout.close();		
-		}
-		// Catches any error conditions
-		catch (IOException e)
-		{
-			System.err.println ("Unable to write to file");
-			System.exit(-1);
-		}
+				    // Close our output stream
+				    fout.close();		
+				}
+				// Catches any error conditions
+				catch (IOException e)
+				{
+					System.err.println ("Unable to write to file");
+					System.exit(-1);
+				}
+		
 	}
 	
 	
@@ -250,7 +245,7 @@ public class Network {
         	if (i == Constants.ROUNDS_BEFORE_SEEDING_DOTA) {
         		network.seedGraph(G, false, Constants.NUM_DOTA_SEEDS, 10);
         	}
-        	network.simulateRound(G, i);
+        	network.simulateRound(G);
         }
         
 //        String vertices = "";

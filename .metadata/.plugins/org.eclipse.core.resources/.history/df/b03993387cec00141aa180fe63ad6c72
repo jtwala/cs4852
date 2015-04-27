@@ -13,7 +13,7 @@ public class Network {
 	/**Run one 'round' of the network algorithm on the given graph,
 	 * modifying in place.
 	 */
-	public void simulateRound(AdjMatrixGraph G, int round) {
+	public void simulateRound(AdjMatrixGraph G) {
 		int numVertices = G.V();
 		tempStatuses = new Status[numVertices];
 		
@@ -25,12 +25,9 @@ public class Network {
 			G.vertexStatuses[v] = tempStatuses[v];
 		}
 		
-		String roundStr = Integer.toString(round);
-		writeFile(G, roundStr);
-		
 	}
 	
-	public void writeFile(AdjMatrixGraph G, String fileID) {
+	public void writeFile(String fileID) {
 		String nodes = printNodes(G);
 		String links = printLinks(G);
 		
@@ -41,7 +38,7 @@ public class Network {
 		try
 		{
 		    // Open an output stream
-		    fout = new FileOutputStream (Constants.OUTPUT_PATH+fileID+Constants.OUTPUT_FILENAME);
+		    fout = new FileOutputStream (Constants.OUTPUT_PATH+Constants.OUTPUT_FILENAME+fileID);
 
 		    // Print a line of text
 		    new PrintStream(fout).println (nodes+links);
@@ -250,7 +247,7 @@ public class Network {
         	if (i == Constants.ROUNDS_BEFORE_SEEDING_DOTA) {
         		network.seedGraph(G, false, Constants.NUM_DOTA_SEEDS, 10);
         	}
-        	network.simulateRound(G, i);
+        	network.simulateRound(G);
         }
         
 //        String vertices = "";

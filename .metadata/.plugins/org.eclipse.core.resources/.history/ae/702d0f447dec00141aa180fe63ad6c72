@@ -20,7 +20,7 @@ public final class Constants  {
 	public static final int NUM_LEAGUE_SEEDS = 2;
 	public static final int NUM_DOTA_SEEDS = 1;
 	
-	public static final String OUTPUT_FILENAME = "_graph.json";
+	public static final String OUTPUT_FILENAME = "graph.json";
 	public static final String OUTPUT_PATH = "Visualization//";
     
 	  

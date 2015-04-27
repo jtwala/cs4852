@@ -41,7 +41,7 @@ public class Network {
 		try
 		{
 		    // Open an output stream
-		    fout = new FileOutputStream (Constants.OUTPUT_PATH+fileID+Constants.OUTPUT_FILENAME);
+		    fout = new FileOutputStream (Constants.OUTPUT_PATH+Constants.OUTPUT_FILENAME+fileID);
 
 		    // Print a line of text
 		    new PrintStream(fout).println (nodes+links);
